@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogar — Queens</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* ---- Abas principais ---- */
+        .mode-tabs {
+            display: flex;
+            gap: 0;
+            border-radius: var(--raio);
+            overflow: hidden;
+            border: 1px solid var(--cor-borda);
+            width: fit-content;
+            margin: 0 auto 32px;
+        }
+
+        .mode-tab {
+            padding: 12px 32px;
+            background: transparent;
+            border: none;
+            color: var(--cor-texto-suave);
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.25s ease;
+            border-right: 1px solid var(--cor-borda);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .mode-tab:last-child { border-right: none; }
+
+        .mode-tab:hover {
+            background: rgba(124, 58, 237, 0.15);
+            color: var(--cor-primaria-clara);
+        }
+
+        .mode-tab.ativo {
+            background: var(--cor-primaria);
+            color: #fff;
+        }
+
+        /* ---- Painéis ---- */
+        .modo-painel {
+            display: none;
+            animation: fadeInUp 0.4s ease both;
+        }
+
+        .modo-painel.ativo {
+            display: block;
+        }
+
+        /* ---- Tabuleiro JS ---- */
+        #board {
+            grid-template-columns: repeat(8, 56px);
+            grid-template-rows:    repeat(8, 56px);
+        }
+
+        .cell {
+            width:  56px;
+            height: 56px;
+            font-size: 24px;
+        }
+
+        .cell.tem-rainha {
+            background-color: rgba(124, 58, 237, 0.2);
+        }
+
+        .timer-display {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--cor-primaria-clara);
+            letter-spacing: 2px;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .confete {
+            position: fixed;
+            border-radius: 2px;
+            pointer-events: none;
+            z-index: 300;
+            animation: confettiFall linear forwards;
+        }
+
+        /* ---- Painel Unity (em breve) ---- */
+        .unity-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .unity-container {
+            position: relative;
+            width: 100%;
+            max-width: 960px;
+            aspect-ratio: 16 / 9;
+            background: #000;
+            border-radius: var(--raio);
+            overflow: hidden;
+            border: 1px solid var(--cor-borda);
+            box-shadow: var(--sombra-roxa);
+        }
+
+        .unity-placeholder {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            background: linear-gradient(135deg, var(--cor-fundo-card2), var(--cor-fundo));
+            color: var(--cor-texto-suave);
+            text-align: center;
+            padding: 32px;
+        }
+
+        .unity-placeholder .big-icon {
+            font-size: 5rem;
+            opacity: 0.4;
+            animation: crownBounce 3s ease-in-out infinite;
+        }
+
+        .unity-placeholder h2 {
+            color: var(--cor-texto-suave);
+            font-size: 1.3rem;
+            margin: 0;
+        }
+
+        .unity-placeholder p {
+            font-size: 0.9rem;
+            max-width: 400px;
+            margin: 0;
+            opacity: 0.7;
+        }
+
+        .badge-em-breve {
+            background: rgba(245, 158, 11, 0.15);
+            border: 1px solid var(--cor-acento);
+            color: var(--cor-acento);
+            border-radius: 50px;
+            padding: 6px 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .unity-info {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        @media (max-width: 600px) {
+            .mode-tab { padding: 10px 18px; font-size: 0.85rem; }
+            #board { grid-template-columns: repeat(8, 40px); grid-template-rows: repeat(8, 40px); }
+            .cell { width: 40px; height: 40px; font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-inner">
+            <a href="index.html" class="header-logo">
+                <span class="logo-icon">♛</span>
+                <span>Queens</span>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="about.html">Sobre</a></li>
+                    <li><a href="services.html">LinkedIn</a></li>
+                    <li><a href="jogo.html" class="ativo">Jogar</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- Abas -->
+        <div class="mode-tabs">
+            <button class="mode-tab ativo" onclick="trocarModo('classico')" id="tab-classico">
+                🧩 Clássico 8×8
+            </button>
+            <button class="mode-tab" onclick="trocarModo('unity')" id="tab-unity">
+                🎮 Modos Completos
+                <span class="badge" style="padding:2px 8px; font-size:0.7rem;">Em Breve</span>
+            </button>
+        </div>
+
+        <!-- ════════════════════════════
+             MODO CLÁSSICO 8x8
+             ════════════════════════════ -->
+        <div id="modo-classico" class="modo-painel ativo">
+            <div class="game-wrapper">
+
+                <div style="text-align:center;">
+                    <h1 style="margin-bottom:4px;">Tabuleiro 8×8</h1>
+                    <p style="margin:0; font-size:0.9rem;">Clique para alternar: Vazio → ❌ → 👑 → Vazio</p>
+                </div>
+
+                <div class="game-status" id="gameStatus">
+                    👑 Posicione as 8 rainhas sem conflitos!
+                </div>
+
+                <div id="board" class="board"></div>
+
+                <div class="game-info">
+                    <div class="info-badge">
+                        <span id="countRainhas">0</span>
+                        Rainhas
+                    </div>
+                    <div class="info-badge">
+                        <span>8</span>
+                        Necessárias
+                    </div>
+                    <div class="info-badge">
+                        <div class="timer-display" id="timerDisplay">00:00</div>
+                        Tempo
+                    </div>
+                </div>
+
+                <div class="game-controls">
+                    <button class="btn-primary" onclick="reiniciarTabuleiro()">🔄 Limpar</button>
+                    <button class="btn-secondary" onclick="darDica()">💡 Dica</button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ════════════════════════════
+             MODOS COMPLETOS (Unity)
+             ════════════════════════════ -->
+        <div id="modo-unity" class="modo-painel">
+            <div class="unity-wrapper">
+
+                <div style="text-align:center;">
+                    <h1 style="margin-bottom:4px;">Modos Completos</h1>
+                    <p style="margin:0; font-size:0.9rem; color: var(--cor-texto-suave);">Versão completa com mais modos de jogo</p>
+                </div>
+
+                <div class="unity-container">
+                    <div class="unity-placeholder">
+                        <div class="big-icon">♛</div>
+                        <div class="badge-em-breve">EM BREVE</div>
+                        <h2>Mais modos chegando em breve</h2>
+                        <p>A versão completa do Queens com todos os modos de jogo será disponibilizada aqui.</p>
+                    </div>
+                </div>
+
+                <div class="unity-info">
+                    <div class="info-badge" style="font-size:0.85rem;">🖥️ Recomendado: Desktop</div>
+                    <div class="info-badge" style="font-size:0.85rem;">🌐 Requer WebGL</div>
+                    <div class="info-badge" style="font-size:0.85rem;">🔊 Som incluído</div>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Modal de vitória -->
+    <div class="modal-overlay" id="modalVitoria">
+        <div class="modal">
+            <span class="coroa-animada">♛</span>
+            <h2>Você Venceu!</h2>
+            <p id="modalMensagem">Todas as rainhas posicionadas corretamente!</p>
+            <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+                <button class="btn-primary" onclick="fecharModal(); reiniciarTabuleiro();">🔄 Jogar Novamente</button>
+                <button class="btn-secondary" onclick="fecharModal()">✖ Fechar</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>♛ Queens &copy; 2024 — Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="java.js"></script>
+    <script>
+        function trocarModo(modo) {
+            document.getElementById('modo-classico').classList.toggle('ativo', modo === 'classico');
+            document.getElementById('modo-unity').classList.toggle('ativo', modo === 'unity');
+            document.getElementById('tab-classico').classList.toggle('ativo', modo === 'classico');
+            document.getElementById('tab-unity').classList.toggle('ativo', modo === 'unity');
+        }
+    </script>
+</body>
+</html>

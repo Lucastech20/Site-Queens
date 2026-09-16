@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Queens: O Desafio de Lógica</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <div class="header-inner">
+            <a href="index.html" class="header-logo">
+                <span class="logo-icon">♛</span>
+                <span>Queens</span>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="ativo">Início</a></li>
+                    <li><a href="about.html">Sobre</a></li>
+                    <li><a href="services.html">LinkedIn</a></li>
+                    <li><a href="jogo.html">Jogar</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- Hero -->
+        <div class="hero">
+            <h1>♛ Queens</h1>
+            <p>O desafio de lógica que vai testar sua mente. Posicione rainhas sem que se ataquem — cada linha, coluna e região colorida deve ter exatamente uma.</p>
+            <a href="jogo.html" class="btn-primary">🎮 Jogar Agora</a>
+        </div>
+
+        <!-- O Jogo -->
+        <section>
+            <h2>O Jogo</h2>
+            <p>Queens é um quebra-cabeça de lógica onde você preenche uma grade com coroas (rainhas) seguindo regras estratégicas. Cada posição precisa ser pensada com cuidado — uma jogada errada e tudo desmorona.</p>
+            <span class="badge">Lógica</span>
+            <span class="badge">Estratégia</span>
+            <span class="badge">Desafio Diário</span>
+        </section>
+
+        <!-- Regras -->
+        <section>
+            <h2>Regras do Jogo</h2>
+            <div class="regras-grid">
+                <div class="regra-item">
+                    <span class="icone">↔️</span>
+                    <h3>Linhas</h3>
+                    <p>Apenas uma rainha por linha.</p>
+                </div>
+                <div class="regra-item">
+                    <span class="icone">↕️</span>
+                    <h3>Colunas</h3>
+                    <p>Apenas uma rainha por coluna.</p>
+                </div>
+                <div class="regra-item">
+                    <span class="icone">↗️</span>
+                    <h3>Diagonais</h3>
+                    <p>Rainhas não podem se tocar em diagonal.</p>
+                </div>
+                <div class="regra-item">
+                    <span class="icone">🎨</span>
+                    <h3>Regiões</h3>
+                    <p>Uma rainha por região de cor (versão LinkedIn).</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Como Jogar -->
+        <section>
+            <h2>Como Jogar</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="ano">PASSO 1</div>
+                    <h3>Acesse o Tabuleiro</h3>
+                    <p>Vá para a página <a href="jogo.html">Jogar</a> e o tabuleiro 8×8 estará pronto.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="ano">PASSO 2</div>
+                    <h3>Clique nas Células</h3>
+                    <p>Cada clique alterna entre <strong>Vazio</strong>, <strong>❌ Marcado</strong> e <strong>👑 Rainha</strong>. Use o ❌ para descartar posições impossíveis.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="ano">PASSO 3</div>
+                    <h3>Resolva o Puzzle</h3>
+                    <p>Posicione exatamente 8 rainhas sem conflitos. O jogo valida automaticamente — células inválidas ficam vermelhas.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="ano">PASSO 4</div>
+                    <h3>Vitória!</h3>
+                    <p>Quando todas as 8 rainhas estiverem posicionadas corretamente, uma animação de vitória é exibida. 🎉</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dicas -->
+        <section>
+            <h2>Dicas Úteis</h2>
+            <p><strong>Coloque X antes da Coroa:</strong> Marque com ❌ as células que certamente não podem ter rainha. Isso reduz o espaço de busca.</p>
+            <p><strong>Comece pelas restrições maiores:</strong> Identifique linhas ou colunas com menos opções válidas e resolva por aí primeiro.</p>
+            <p><strong>Use o botão Limpar:</strong> Sem vergonha de reiniciar — faz parte do processo de resolução.</p>
+            <div style="margin-top: 16px;">
+                <a href="jogo.html" class="btn-primary">🚀 Tentar Agora</a>
+                &nbsp;&nbsp;
+                <a href="about.html" class="btn-secondary">📖 Ver a História</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>♛ Queens &copy; 2024 — Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="java.js"></script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre — Queens</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <div class="header-inner">
+            <a href="index.html" class="header-logo">
+                <span class="logo-icon">♛</span>
+                <span>Queens</span>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="about.html" class="ativo">Sobre</a></li>
+                    <li><a href="services.html">LinkedIn</a></li>
+                    <li><a href="jogo.html">Jogar</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <section>
+            <h1>História do Queens</h1>
+            <h2>Como tudo começou</h2>
+            <p>
+                A história do Queens tem raízes no século XIX. Em <strong>1848</strong>, o jogador e estudioso de xadrez alemão <strong>Max Bezzel</strong> publicou o que ficou conhecido como o <em>"Problema das 8 Rainhas"</em>: posicionar oito rainhas em um tabuleiro 8×8 de forma que nenhuma delas ataque outra.
+            </p>
+            <p>
+                Dois anos depois, em <strong>1850</strong>, <strong>Franz Nauck</strong> publicou as primeiras soluções completas do problema e o estendeu para o <em>Problema das N-Rainhas</em> — generalizando para qualquer tabuleiro n×n. O problema logo atraiu matemáticos como <strong>Carl Friedrich Gauss</strong>, que se dedicou a enumerá-las manualmente.
+            </p>
+        </section>
+
+        <!-- Timeline -->
+        <section>
+            <h2>Linha do Tempo</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="ano">1848</div>
+                    <h3>Max Bezzel propõe o problema</h3>
+                    <p>O "Problema das 8 Rainhas" é publicado pela primeira vez em uma revista de xadrez alemã.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="ano">1850</div>
+                    <h3>Franz Nauck publica as soluções</h3>
+                    <p>Nauck encontra as 92 soluções do tabuleiro 8×8 e generaliza para N rainhas em um tabuleiro N×N.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="ano">1850s</div>
+                    <h3>Gauss entra no jogo</h3>
+                    <p>Carl Friedrich Gauss, um dos maiores matemáticos da história, se interessa pelo problema e trabalha em soluções manuais.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="ano">Séc. XX</div>
+                    <h3>Computação e Backtracking</h3>
+                    <p>O N-Queens se torna um problema clássico de ciência da computação, usado para ensinar algoritmos de backtracking e otimização.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="ano">2024</div>
+                    <h3>Queens no LinkedIn</h3>
+                    <p>O LinkedIn lança sua versão do jogo com regiões coloridas, tornando-se viral entre profissionais ao redor do mundo.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Personagens -->
+        <section>
+            <h2>Os Pioneiros</h2>
+            <div class="gallery-moderna">
+                <div class="gallery-card">
+                    <img src="image/maxbezzel.jpg" alt="Max Bezzel" onerror="this.style.background='#3d2b6b'; this.style.height='150px'; this.removeAttribute('src')">
+                    <div class="desc">Max Bezzel<br><small style="color:#9d8ec4;font-weight:400">1848 · Criador</small></div>
+                </div>
+                <div class="gallery-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/August_Nauck_-_Imagines_philologorum.jpg/220px-August_Nauck_-_Imagines_philologorum.jpg" alt="Franz Nauck">
+                    <div class="desc">Franz Nauck<br><small style="color:#9d8ec4;font-weight:400">1850 · Soluções</small></div>
+                </div>
+            </div>
+            <div style="clear:both; padding-top: 16px;"></div>
+        </section>
+
+        <!-- Curiosidades -->
+        <section>
+            <h2>Você Sabia?</h2>
+            <p>🔢 Existem exatamente <strong>92 soluções</strong> para o problema das 8 rainhas, mas apenas <strong>12 são fundamentalmente distintas</strong> (descartando rotações e reflexões).</p>
+            <p>🧮 Para um tabuleiro 27×27, existem mais de <strong>234 trilhões de soluções</strong>.</p>
+            <p>🤖 O N-Queens é amplamente usado para testar algoritmos de inteligência artificial, como <em>backtracking</em>, <em>constraint propagation</em> e <em>heurísticas de busca local</em>.</p>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>♛ Queens &copy; 2024 — Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="java.js"></script>
+</body>
+</html>

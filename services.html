@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Queens do LinkedIn — Queens</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .linkedin-demo {
+            display: grid;
+            grid-template-columns: repeat(6, 52px);
+            gap: 3px;
+            background: var(--cor-borda);
+            padding: 3px;
+            border-radius: 8px;
+            width: fit-content;
+            margin: 0 auto;
+            box-shadow: var(--sombra-roxa);
+        }
+
+        .lc {
+            width: 52px;
+            height: 52px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            transition: transform 0.2s ease;
+        }
+
+        .lc:hover { transform: scale(1.08); }
+
+        /* Cores das regiões */
+        .r1 { background-color: #e57373; }
+        .r2 { background-color: #64b5f6; }
+        .r3 { background-color: #81c784; }
+        .r4 { background-color: #ffb74d; }
+        .r5 { background-color: #ba68c8; }
+        .r6 { background-color: #4db6ac; }
+
+        .diferenca-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .diferenca-card {
+            background: var(--cor-fundo-card2);
+            border: 1px solid var(--cor-borda);
+            border-radius: var(--raio-pequeno);
+            padding: 20px;
+        }
+
+        .diferenca-card h3 {
+            color: var(--cor-primaria-clara);
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+        .diferenca-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .diferenca-card ul li {
+            color: var(--cor-texto-suave);
+            font-size: 0.9rem;
+            padding: 4px 0;
+        }
+
+        .diferenca-card ul li::before {
+            content: '✓ ';
+            color: var(--cor-sucesso);
+            font-weight: 700;
+        }
+
+        .diferenca-card.extra ul li::before {
+            content: '+ ';
+            color: var(--cor-acento);
+        }
+
+        @media (max-width: 500px) {
+            .diferenca-grid { grid-template-columns: 1fr; }
+            .linkedin-demo {
+                grid-template-columns: repeat(6, 44px);
+            }
+            .lc { width: 44px; height: 44px; font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-inner">
+            <a href="index.html" class="header-logo">
+                <span class="logo-icon">♛</span>
+                <span>Queens</span>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="about.html">Sobre</a></li>
+                    <li><a href="services.html" class="ativo">LinkedIn</a></li>
+                    <li><a href="jogo.html">Jogar</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <section>
+            <h1>Queens do LinkedIn</h1>
+            <h2>A versão que viralizou</h2>
+            <p>Em 2024, o LinkedIn lançou sua própria versão do quebra-cabeça N-Queens como um <strong>jogo diário</strong> dentro da plataforma. A versão ficou popular rapidamente entre profissionais que a jogam como desafio matinal.</p>
+            <span class="badge">Diário</span>
+            <span class="badge">Regiões Coloridas</span>
+            <span class="badge">Competitivo</span>
+        </section>
+
+        <!-- Regra extra -->
+        <section>
+            <h2>A Regra Extra do LinkedIn</h2>
+            <p>A versão LinkedIn mantém todas as regras clássicas, mas adiciona uma restrição fundamental que muda tudo:</p>
+            <div class="card" style="border-color: var(--cor-acento); background: rgba(245,158,11,0.08);">
+                <p style="color: var(--cor-acento); font-size: 1.05rem; margin: 0;">
+                    🎨 <strong>Cada região colorida do tabuleiro deve conter exatamente uma rainha.</strong>
+                </p>
+            </div>
+            <p>Isso significa que além de não poder repetir linha, coluna e diagonal — cada cor do tabuleiro também deve ter exatamente um símbolo de rainha. Com isso, o número de soluções válidas cai drasticamente, tornando cada puzzle único e mais desafiador.</p>
+        </section>
+
+        <!-- Comparação -->
+        <section>
+            <h2>Clássico vs. LinkedIn</h2>
+            <div class="diferenca-grid">
+                <div class="diferenca-card">
+                    <h3>N-Queens Clássico</h3>
+                    <ul>
+                        <li>1 rainha por linha</li>
+                        <li>1 rainha por coluna</li>
+                        <li>Sem conflito diagonal</li>
+                        <li>Tabuleiro N×N livre</li>
+                    </ul>
+                </div>
+                <div class="diferenca-card extra">
+                    <h3>Queens — LinkedIn</h3>
+                    <ul>
+                        <li>1 rainha por linha</li>
+                        <li>1 rainha por coluna</li>
+                        <li>Sem conflito diagonal</li>
+                        <li>1 rainha por região de cor</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Demo visual -->
+        <section>
+            <h2>Exemplo de Tabuleiro</h2>
+            <p>Abaixo, um exemplo 6×6 com 6 regiões coloridas. Cada cor precisa ter exatamente uma rainha posicionada:</p>
+
+            <div class="linkedin-demo">
+                <!-- linha 1 -->
+                <div class="lc r1"></div>
+                <div class="lc r1"></div>
+                <div class="lc r2"></div>
+                <div class="lc r2"></div>
+                <div class="lc r3"></div>
+                <div class="lc r3"></div>
+                <!-- linha 2 -->
+                <div class="lc r1"></div>
+                <div class="lc r1">👑</div>
+                <div class="lc r2"></div>
+                <div class="lc r2"></div>
+                <div class="lc r3"></div>
+                <div class="lc r3"></div>
+                <!-- linha 3 -->
+                <div class="lc r4"></div>
+                <div class="lc r4"></div>
+                <div class="lc r5"></div>
+                <div class="lc r5">👑</div>
+                <div class="lc r6"></div>
+                <div class="lc r6"></div>
+                <!-- linha 4 -->
+                <div class="lc r4"></div>
+                <div class="lc r4"></div>
+                <div class="lc r5"></div>
+                <div class="lc r5"></div>
+                <div class="lc r6">👑</div>
+                <div class="lc r6"></div>
+                <!-- linha 5 -->
+                <div class="lc r2">👑</div>
+                <div class="lc r2"></div>
+                <div class="lc r4"></div>
+                <div class="lc r4"></div>
+                <div class="lc r6"></div>
+                <div class="lc r3"></div>
+                <!-- linha 6 -->
+                <div class="lc r2"></div>
+                <div class="lc r2"></div>
+                <div class="lc r4">👑</div>
+                <div class="lc r1"></div>
+                <div class="lc r1"></div>
+                <div class="lc r5">👑</div>
+            </div>
+
+            <p style="text-align:center; margin-top: 16px; font-size: 0.85rem; color: var(--cor-texto-suave);">
+                Cada cor aparece exatamente uma vez com uma rainha 👑
+            </p>
+        </section>
+
+        <!-- CTA -->
+        <section>
+            <h2>Quer praticar?</h2>
+            <p>Nosso modo de jogo livre usa o tabuleiro 8×8 clássico. Experimente resolver sem cometer conflitos antes de encarar o desafio diário do LinkedIn!</p>
+            <a href="jogo.html" class="btn-primary">🎮 Ir para o Jogo</a>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>♛ Queens &copy; 2024 — Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="java.js"></script>
+</body>
+</html>
